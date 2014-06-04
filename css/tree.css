@@ -1,0 +1,68 @@
+#tree {
+	width: 400px;
+}
+
+.justo-root-list { 
+	padding-left: 0;
+}
+.justo-root-list li { 
+	list-style-type: none;
+}
+.justo-root-list > li {
+	color: #232323;
+	font-family: 'Ubuntu', sans-serif;
+	cursor: pointer;
+}
+.justo-root-list .expander {
+	color: #232323;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	position: absolute;
+}
+.justo-root-list .content {
+	margin-left: 40px;
+	display: block;
+	border: 1px solid rgba(0,0,0,0);
+}
+.justo-root-list .content:hover {
+	background-color: #cfcfcf;
+	border: 1px solid #a9a9a9;
+}
+.justo-root-list .icon {
+	width: 16px;
+	height: 16px;
+	margin-left: 18px;
+	position: absolute;
+	color: #ff0000;
+}
+.icon {
+	width: 16px;
+	height: 16px;
+	margin-left: 20px;
+	position: absolute;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.justo-root-list .loading {
+	background-image: url("../img/loading.gif");
+}
+.justo-root-list .folder-opened {
+	background-image: url("../img/folder_opened.png");
+}
+.justo-root-list .folder-closed {
+	background-image: url("../img/folder_closed.png");
+}
+.justo-root-list .document {
+	background-image: url("../img/file.png");
+}
+.justo-root-list .expanded:before {
+	content: url("../img/expanded.png");
+}
+.justo-root-list .collapsed:before {
+	content: url("../img/collapsed.png");
+}
+.justo-root-list .selected {
+	/*color: #ffffff;
+	background-color: #336699;*/
+}

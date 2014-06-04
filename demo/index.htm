@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/tree.css">
+  </head>
+  <body onload="buildTree()">
+
+    <span id="tree_status" style="display: block;"></span>
+    <button onclick="buildTree();">Build Tree</button>
+    <button onclick="insertTestNode();">Test Live Insert</button>
+    <div id="tree">  </div>
+
+
+    <script src="../lib/tree.js"></script>
+    <script type="text/javascript">
+        var _varControl = 1;
+        var tree = new JusTo.ui.Tree();
+        var treeDiv = document.getElementById("tree");
+        var Node = JusTo.ui.Node;
+        var startTime = null;
+        var eggs = null;
+        
+        function benchmark(startTime, desc, tag_id) {
+            var dom = document.getElementById(tag_id);
+            var endTime = window.performance.now();
+
+            dom.innerHTML = desc + ': ' + (parseFloat(endTime - startTime)).toFixed(3) + ' miliseconds';
+        }
+
+        function insertTestNode() {
+            startTime = performance.now();
+            eggs.push(new Node("SubItem " + (++_varControl), _varControl));
+
+            benchmark(startTime, 'insertTestNode', 'tree_status');
+        }
+
+        function buildTree() {
+            treeDiv.innerHTML = "";
+            startTime = performance.now();
+
+            eggs = new Node("Eggs", _varControl++);
+            var milk = new Node("Milk", _varControl++);
+            var cheese = new Node("Cheese", _varControl++);
+            var smelly = new Node("Smelly", _varControl++);
+            var folha = new Node("Folha", _varControl++);
+            var bread = new Node("Bread", _varControl++, "sample.json");
+
+            tree.push(milk);
+            tree.push(eggs);
+            tree.push(cheese);
+            tree.push(bread);
+            tree.push(folha);
+
+            milk.push(new Node("Goat", _varControl++));
+            milk.push(new Node("Cow", _varControl++));
+
+            eggs.push(new Node("Free-range", _varControl++));
+            eggs.push(new Node("Other", _varControl++));
+
+            cheese.push(smelly);
+            cheese.push(new Node("Extra Smelly", _varControl++));
+
+            smelly.push(new Node("Level 1", _varControl++));
+            smelly.push(new Node("Level 2"));
+            smelly.push(new Node("Level 3"));
+
+            var treeDom = tree.toDom();
+            treeDiv.appendChild(treeDom);
+            
+            benchmark(startTime, 'buildTree', 'tree_status');
+
+            tree.putClickEvent(function(node) {
+                console.log(node.selected, node.value);
+            });
+        }
+    </script>
+  </body>
+</html>

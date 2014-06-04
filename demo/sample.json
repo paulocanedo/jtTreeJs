@@ -1,0 +1,14 @@
+{
+	"result": 
+	[
+		{
+			"id": 1000,
+			"value": "Ajax Item 1",
+			"urlSubItems": "sample2.json"
+		},
+		{
+			"id": 1001,
+			"value": "Ajax Item 2"
+		}
+	]
+}
