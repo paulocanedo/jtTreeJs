@@ -1,7 +1,3 @@
-#tree {
-	width: 400px;
-}
-
 .justo-root-list { 
 	padding-left: 0;
 }
@@ -28,15 +24,9 @@
 .justo-root-list .content:hover {
 	background-color: #cfcfcf;
 	border: 1px solid #a9a9a9;
+	color: #000000;
 }
 .justo-root-list .icon {
-	width: 16px;
-	height: 16px;
-	margin-left: 18px;
-	position: absolute;
-	color: #ff0000;
-}
-.icon {
 	width: 16px;
 	height: 16px;
 	margin-left: 20px;
@@ -63,6 +53,6 @@
 	content: url("../img/collapsed.png");
 }
 .justo-root-list .selected {
-	/*color: #ffffff;
-	background-color: #336699;*/
+	color: #ffffff;
+	background-color: #336699;
 }
