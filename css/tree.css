@@ -23,7 +23,10 @@
 }
 .justo-root-list .content:hover {
 	background-color: #cfcfcf;
-	border: 1px solid #a9a9a9;
+	color: #000000;
+}
+.justo-root-list .background-hover {
+	background-color: #cfcfcf;
 	color: #000000;
 }
 .justo-root-list .icon {
