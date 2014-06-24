@@ -38,8 +38,28 @@ var rootNode = new JusTo.ui.Node("root", -1);
     treeDiv.appendChild(rootNode.outterDom);
 
     rootNode.events.selectionChanged.push(function(node) {
-        console.log("selectionChanged", node.selected);
+        console.log("selectionChanged", node.id);
     });
+
+    // var path = [1000, 2000];
+    // var depth = -1;
+
+    // var asyncEvent = function(node) {    
+    //     depth++;
+    //     var id = path[depth];
+
+    //     if(depth === path.length - 1) {
+    //         node.find(id).setSelected(true);
+    //         rootNode.events.asyncOpened = [];
+    //     } else {
+    //         node.find(id).open();
+    //     }
+
+    //     console.log("node opened via async", node.id);
+    // };
+
+    // rootNode.events.asyncOpened.push(asyncEvent);
+    // rootNode.find(6).open();
 
     document.getElementById("selectionTypeSelect")[0].selected = true;
     document.getElementById("selectAllButton").addEventListener("click", function(evt) {
