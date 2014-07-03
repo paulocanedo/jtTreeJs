@@ -15,6 +15,7 @@ var rootNode = new JusTo.ui.Node("root", -1);
     var smelly = new JusTo.ui.Node("Smelly", _varControl++);
     var leaf = new JusTo.ui.Node("Leaf", _varControl++);
     var bread = new JusTo.ui.Node("Bread", _varControl++, "sample.json");
+    bread.setTitle("Click to open via ajax");
 
     rootNode.push(milk);
     rootNode.push(eggs);
@@ -47,19 +48,23 @@ var rootNode = new JusTo.ui.Node("root", -1);
     var asyncEvent = function(node) {    
         depth++;
         var id = path[depth];
+        console.log(id);
 
         if(depth === path.length - 1) {
             node.find(id).setSelected(true);
             rootNode.events.asyncOpened = [];
         } else {
-            node.find(id).open();
+            var child = node.find(id);
+            if(child == null) console.log("__", node.id);
+            child.open();
         }
 
         console.log("node opened via async", node.id);
     };
 
-    rootNode.events.asyncOpened.push(asyncEvent);
-    console.log(rootNode.events.asyncOpened.pop());
+    // rootNode.events.asyncOpened.push(asyncEvent);
+    rootNode.events.openStateChanged.push(asyncEvent);
+    // rootNode.events.openStateChanged.push(function(node) {console.log("stateChanged", node.isOpened())});
     // rootNode.find(6).open();
 
     document.getElementById("selectionTypeSelect")[0].selected = true;
