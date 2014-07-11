@@ -42,6 +42,10 @@ var rootNode = new JusTo.ui.Node("root", -1);
         console.log("selectionChanged", node.id);
     });
 
+    rootNode.events.openStateChanged.push(function(node) {
+        console.log("opened");
+    });
+
     document.getElementById("selectionTypeSelect")[0].selected = true;
     document.getElementById("selectAllButton").addEventListener("click", function(evt) {
         rootNode.selectAll();
