@@ -3,14 +3,13 @@ var rootNode = new JusTo.ui.Node("root", -1);
 (function () {
     var _varControl = 1;
     var startTime = null;
-    var eggs = null;
     var treeDiv = document.getElementById("tree");
 
     treeDiv.innerHTML = "";
     startTime = performance.now();
 
-    eggs = new JusTo.ui.Node("Eggs", _varControl++);
     var milk = new JusTo.ui.Node("Milk", _varControl++);
+    var eggs = new JusTo.ui.Node("Eggs", _varControl++);
     var cheese = new JusTo.ui.Node("Cheese", _varControl++);
     var smelly = new JusTo.ui.Node("Smelly", _varControl++);
     var leaf = new JusTo.ui.Node("Leaf", _varControl++);
