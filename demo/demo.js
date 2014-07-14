@@ -60,19 +60,13 @@ var rootNode = new JusTo.ui.Node("root", -1);
                 JusTo.ui.Node.canSelect = JusTo.ui.NodeFilter.all;
                 break;
             case "1":
-                JusTo.ui.Node.canSelect = function(node) { rootNode.selectAll(false); return true; };
+                JusTo.ui.Node.canSelect = JusTo.ui.NodeFilter.single;
                 break;
             case "2":
                 JusTo.ui.Node.canSelect = JusTo.ui.NodeFilter.leaf;
                 break;
             case "3":
-                JusTo.ui.Node.canSelect = function(node) { 
-                    var canSelect = node.urlSubItems === undefined && (!node.hasChildren());
-                    if(canSelect) { 
-                        rootNode.selectAll(false);
-                    }
-                    return canSelect;
-                };
+                JusTo.ui.Node.canSelect = JusTo.ui.NodeFilter.leafSingle;
                 break;
             case "4":
                 JusTo.ui.Node.canSelect = JusTo.ui.NodeFilter.children;

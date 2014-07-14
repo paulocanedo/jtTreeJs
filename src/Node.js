@@ -1,4 +1,7 @@
+/** @namespace */
 var JusTo    = JusTo    || {};
+
+/** @namespace */
     JusTo.ui = JusTo.ui || {};
 
 /**
@@ -90,6 +93,7 @@ JusTo.ui.Node.prototype.setTitle = function(title) {
  * Returns the node found or null if not found.
  *
  * @this {Node}
+ * @param {number} Id unique number of the node
  * @return {Node} The node found.
  */
 JusTo.ui.Node.prototype.find = function(nodeId) {
@@ -104,9 +108,16 @@ JusTo.ui.Node.prototype.find = function(nodeId) {
     return found;
 };
 
+/**
+ * Returns the root node.
+ *
+ * @this {Node}
+ * @return {Node} The root node.
+ */
 JusTo.ui.Node.prototype.findRoot = function() {
+    if(this.isRoot()) return this;
     var parent = this.parent;
-    while(parent !== null) {
+    while(!parent.isRoot()) {
         parent = parent.parent;
     }
     return parent;
@@ -492,33 +503,3 @@ JusTo.ui.Node.prototype._nodeAsyncOpened = function(node) {
         entryFunction(node);
     });
 };
-
-JusTo.ui.NodeFilter = (function() { 
-    return {
-        selected: function(node) {
-            return node.selected;
-        },
-        unselected: function(node) {
-            return !node.selected;
-        },
-        leaf: function(node) {
-            return node.isLeaf();
-        },
-        // leafSingle: function(node) {
-        //     var canSelect = node.urlSubItems === undefined && (!node.hasChildren());
-        //     if(canSelect) { 
-        //         rootNode.selectAll(false);
-        //     }
-        //     return canSelect;
-        // },
-        any: function(node) {
-            return true;
-        },
-        children: function(node) {
-            var selected = node.selected;
-            node.selectAll(!selected);
-
-            return true;
-        }
-    }; 
-})();
