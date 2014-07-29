@@ -63,7 +63,9 @@ JusTo.ui.Node.prototype.events = (function() {
         },
         initNodeTypeChanged: function() {
             this.nodeTypeChanged.push(function(node) {
-                node._nodeOpenChanged(node);
+                var iconDom = node.innerDoms.icon;
+                iconDom.className = "icon";
+                iconDom.className += node.childrenVisible ? " folder-opened" : " folder-closed";
             });
         },
         initContentClicked: function() {
