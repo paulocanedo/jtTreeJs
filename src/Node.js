@@ -231,6 +231,7 @@ JusTo.ui.Node.prototype._insertNode = function(node) {
             this.childDom = document.createElement("ul");
             parentElement.appendChild(this.childDom);
             this._setChildrenVisible(true);
+            this._nodeTypeChanged(this);
         }
 
         parentElement = this.childDom;
