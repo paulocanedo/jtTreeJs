@@ -78,7 +78,7 @@ JusTo.ui.Node.prototype.events = (function() {
         selectionChanged: [], //occurs when the node was (de)selected
         contentClicked: [],   //occurs when the user click at content span
         asyncOpened: [],      //occurs when the node was opened in async mode
-        asyncErrorHandler: [] //occurs when async open return http response <> 200
+        asyncErrorHandler: undefined //occurs when async open return http response <> 200
     };
 })();
 
@@ -416,7 +416,9 @@ JusTo.ui.Node.prototype._asyncOpen = function() {
                 objThis._nodeAsyncOpened(objThis);
             } else {
                 icon.className = oldClassName;
-                objThis.events.asyncErrorHandler(request.status, request.body);
+                if(objThis.events.asyncErrorHandler != undefined) {
+                    objThis.events.asyncErrorHandler(request.status, request.body);
+                }
             }
         }
     };
