@@ -77,7 +77,8 @@ JusTo.ui.Node.prototype.events = (function() {
         nodeTypeChanged: [],  //occurs when node change from leaf to non-leaf
         selectionChanged: [], //occurs when the node was (de)selected
         contentClicked: [],   //occurs when the user click at content span
-        asyncOpened: []       //occurs when the node was opened in async mode
+        asyncOpened: [],      //occurs when the node was opened in async mode
+        asyncErrorHandler: [] //occurs when async open return http response <> 200
     };
 })();
 
@@ -388,25 +389,35 @@ JusTo.ui.Node.prototype.close = function() {
     this._nodeOpenChanged(this);
 };
 
+JusTo.ui.Node.prototype.setAsyncErrorHandler = function(fnErrorHandler) {
+    this.events.asyncErrorHandler = fnErrorHandler;
+};
+
 JusTo.ui.Node.prototype._asyncOpen = function() {
     var request = new XMLHttpRequest();
     var objThis = this;
     var icon = this.innerDoms.icon;
+    var oldClassName = icon.className;
     icon.className = "icon loading";
 
     request.onreadystatechange = function() {
-        if (request.readyState === 4 && request.status === 200) {
-            var result = JSON.parse(request.responseText).result;
-            result.forEach(function(entry) {
-                var newNode = new JusTo.ui.Node(entry.value, entry.id, entry.urlSubItems);
-                newNode.setTitle(entry.title);
-                objThis.push(newNode);
-            });
+        if (request.readyState === 4) {
+            if(request.status === 200) {
+                var result = JSON.parse(request.responseText).result;
+                result.forEach(function(entry) {
+                    var newNode = new JusTo.ui.Node(entry.value, entry.id, entry.urlSubItems);
+                    newNode.setTitle(entry.title);
+                    objThis.push(newNode);
+                });
 
-            objThis.loaded = true;
-            objThis._setChildrenVisible(true);
-            objThis._nodeOpenChanged(objThis);
-            objThis._nodeAsyncOpened(objThis);
+                objThis.loaded = true;
+                objThis._setChildrenVisible(true);
+                objThis._nodeOpenChanged(objThis);
+                objThis._nodeAsyncOpened(objThis);
+            } else {
+                icon.className = oldClassName;
+                objThis.events.asyncErrorHandler(request.status, request.body);
+            }
         }
     };
     request.open("GET", this.urlSubItems, true);

@@ -1,4 +1,7 @@
 var rootNode = new JusTo.ui.Node("root", -1);
+rootNode.setAsyncErrorHandler(function(errorCode, message) {
+    console.log(errorCode, message);
+});
 
 (function () {
     var _varControl = 1;
