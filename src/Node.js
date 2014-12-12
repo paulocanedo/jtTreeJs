@@ -415,7 +415,7 @@ JusTo.ui.Node.prototype._asyncOpen = function() {
                 objThis._nodeOpenChanged(objThis);
                 objThis._nodeAsyncOpened(objThis);
             } else {
-                icon.className = oldClassName;
+                icon.className = "icon code_"+request.status;
                 if(objThis.events.asyncErrorHandler != undefined) {
                     objThis.events.asyncErrorHandler(request.status, request.body);
                 }

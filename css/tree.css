@@ -40,6 +40,9 @@
 .justo-root-list .loading {
 	background-image: url("../img/loading.gif");
 }
+.justo-root-list .code_403, .justo-root-list .code_404 {
+	background-image: url("../img/folder_closed.png");
+}
 .justo-root-list .folder-opened {
 	background-image: url("../img/folder_opened.png");
 }
