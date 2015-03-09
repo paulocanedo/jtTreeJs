@@ -44,6 +44,12 @@ rootNode.setAsyncErrorHandler(function(errorCode, message) {
         console.log("selectionChanged", node.id);
     });
 
+    rootNode.events.selectionChanged.push(function(node) {
+        if(node.selected) {
+            console.log("selected", node.options);
+        }
+    });
+
     rootNode.events.openStateChanged.push(function(node) {
         console.log("opened");
     });

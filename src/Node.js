@@ -407,6 +407,9 @@ JusTo.ui.Node.prototype._asyncOpen = function() {
                 result.forEach(function(entry) {
                     var newNode = new JusTo.ui.Node(entry.value, entry.id, entry.urlSubItems);
                     newNode.setTitle(entry.title);
+                    if(entry.options != undefined) {
+                        newNode.options = entry.options;
+                    }
                     objThis.push(newNode);
                 });
 

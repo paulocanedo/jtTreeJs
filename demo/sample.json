@@ -5,7 +5,10 @@
 			"id": 1000,
 			"value": "Ajax Item 1",
 			"urlSubItems": "sample2.json",
-			"title": "open via ajax"
+			"title": "open via ajax",
+			"options": {
+				"id": 12345
+			}
 		},
 		{
 			"id": 1001,
